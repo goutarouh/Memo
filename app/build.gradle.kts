@@ -69,6 +69,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation("androidx.compose.ui:ui-test-junit4")
     testImplementation("androidx.test.espresso:espresso-core:3.1.0")
 
     testImplementation("io.github.takahirom.roborazzi:roborazzi:1.7.0-rc-1")
