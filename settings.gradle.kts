@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Memo"
 include(":app")
- 
+include(":data:remote")
