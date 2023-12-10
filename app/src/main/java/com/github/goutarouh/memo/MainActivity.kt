@@ -1,65 +1,78 @@
 package com.github.goutarouh.memo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.github.goutarouh.repository.MemoRepository
+import com.github.goutarouh.repository.di.Memo
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<MainViewModel>()
+    //private val viewModel: MainViewModel by activity()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        setContent {
-//            MainScreen()
-//        }
-
+        Log.i("hasegawa", "${viewModel.hashCode()}")
         setContent {
-            MainScreenWithComponent()
+
+            val uiState = viewModel.uiState.collectAsState().value
+            when (uiState) {
+                UiState.Loading -> {
+                    Text(text = "Loading")
+                }
+                is UiState.Success -> {
+                    Column {
+                        uiState.memos.forEach {
+                            Text(text = it.title)
+                        }
+                    }
+                }
+                is UiState.Error -> {
+                    Text(text = uiState.message)
+                }
+
+            }
         }
     }
 }
 
-@Composable
-fun MainScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Hello World from Compose")
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val memoRepository: MemoRepository
+): ViewModel() {
+
+    val uiState = MutableStateFlow<UiState>(UiState.Loading)
+
+    init {
+        viewModelScope.launch {
+            try {
+                val memos = memoRepository.getMemoList()
+                uiState.value = UiState.Success(memos)
+            } catch (e: Exception) {
+                uiState.value = UiState.Error(e.message ?: "Unknown Error")
+            }
+        }
     }
+
 }
 
-@Composable
-fun MainScreenWithComponent() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Component()
-    }
-}
-
-@Composable
-fun Component() {
-    Box(
-        modifier = Modifier
-            .size(200.dp)
-            .background(Color.Red)
-            .testTag("component"),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Component")
-    }
+sealed interface UiState {
+    object Loading: UiState
+    data class Success(val memos: List<Memo>): UiState
+    data class Error(val message: String): UiState
 }

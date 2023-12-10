@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.github.goutarouh.data.remote"
+    namespace = "com.github.goutarouh.data.repository"
     compileSdk = 34
 
     defaultConfig {
@@ -36,6 +36,8 @@ android {
 
 dependencies {
 
+    implementation(project(":data:remote"))
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
@@ -45,7 +47,4 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
-
-    api("com.squareup.retrofit2:retrofit:2.9.0")
-    api("com.squareup.retrofit2:converter-gson:2.9.0")
 }
