@@ -1,6 +1,5 @@
 package com.github.goutarouh.repository
 
-import android.util.Log
 import com.github.goutarouh.remote.MemoRemoteService
 import com.github.goutarouh.repository.di.Memo
 import com.github.goutarouh.repository.di.toMemo

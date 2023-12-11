@@ -48,4 +48,6 @@ dependencies {
 
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
+    testApi("com.squareup.okhttp3:mockwebserver:4.11.0")
+    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0-RC")
 }
