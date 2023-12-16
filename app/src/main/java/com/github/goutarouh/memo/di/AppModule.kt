@@ -1,8 +1,9 @@
 package com.github.goutarouh.memo.di
 
 import com.github.goutarouh.memo.BuildConfig
+import com.github.goutarouh.memo.error.UserMessageStateHolder
+import com.github.goutarouh.memo.error.UserMessageStateHolderImpl
 import com.github.goutarouh.repository.di.RepositoryConfig
-import com.github.goutarouh.repository.di.RepositoryModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,13 @@ object AppModule {
             debug = BuildConfig.DEBUG,
             baseUrl = "http://10.0.2.2:3000/"
         )
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideMessageStateHolder(): UserMessageStateHolder {
+        return UserMessageStateHolderImpl()
     }
 
 }
