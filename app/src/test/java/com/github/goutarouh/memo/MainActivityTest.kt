@@ -22,7 +22,7 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(
     sdk = [30],
-    qualifiers = RobolectricDeviceQualifiers.NexusOne,
+    qualifiers = RobolectricDeviceQualifiers.Pixel5,
     application = HiltTestApplication::class
 )
 @RunWith(AndroidJUnit4::class)
@@ -36,7 +36,6 @@ class MainActivityTest {
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    @Config(qualifiers = "+land")
     fun captureComposeComponent() {
         composeTestRule.waitUntilExactlyOneExists(
             matcher = hasTestTag(MAIN_SCREEN_SUCCESS_TAG),
