@@ -1,9 +1,6 @@
 name: CompareScreenshot
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
 
 permissions: {}
@@ -38,7 +35,7 @@ jobs:
         with:
           name: screenshot
           workflow: StoreScreenshot.yml
-          branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.ref || github.event.repository.default_branch }}
+          branch: ${{ github.event.pull_request.base.ref }}
 
       - name: compare screenshot test
         id: compare-screenshot-test
@@ -70,7 +67,6 @@ jobs:
           retention-days: 30
 
       - name: Save PR number
-        if: ${{ github.event_name == 'pull_request' }}
         run: |
           mkdir -p ./pr
           echo ${{ github.event.number }} > ./pr/NR
