@@ -5,11 +5,11 @@ import com.github.goutarouh.repository.di.Memo
 import com.github.goutarouh.repository.di.toMemo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
 
-
-class MemoRepository(
-    private val memoRemoteService: MemoRemoteService,
+class MemoRepository @Inject constructor(
+    val memoRemoteService: MemoRemoteService,
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO),
 ) {
 
