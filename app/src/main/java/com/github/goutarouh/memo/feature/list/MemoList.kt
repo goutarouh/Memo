@@ -46,7 +46,6 @@ fun MemoCard(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.Gray)
             .border(width = 1.dp, color = Color.Gray, shape = RoundedCornerShape(8.dp))
             .padding(12.dp)
     ) {
