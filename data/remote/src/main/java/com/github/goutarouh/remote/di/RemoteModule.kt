@@ -1,4 +1,4 @@
-package com.github.goutarouh.repository.di
+package com.github.goutarouh.remote.di
 
 import com.github.goutarouh.remote.MemoRemoteService
 import dagger.Module
@@ -10,7 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteModule {
@@ -25,11 +24,11 @@ object RemoteModule {
     @Singleton
     @Provides
     fun retrofit(
-        repositoryConfig: RepositoryConfig,
+        remoteConfig: RemoteConfig,
         okHttpClient: OkHttpClient,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(repositoryConfig.baseUrl)
+            .baseUrl(remoteConfig.baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

@@ -8,10 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.goutarouh.memo.UiState
 import com.github.goutarouh.memo.error.SnackbarMessageEffect
+
+
+//const val MAIN_SCREEN_LOADING_TAG = "MAIN_SCREEN_LOADING_TAG"
+const val MAIN_SCREEN_SUCCESS_TAG = "MAIN_SCREEN_SUCCESS_TAG"
+//const val MAIN_SCREEN_FAILURE_TAG = "MAIN_SCREEN_FAILURE_TAG"
 
 @Composable
 fun MemoListScreen(
@@ -47,7 +53,8 @@ private fun MemoListScreen(
         is UiState.Success -> {
             MemoList(
                 memoList = uiState.data.memoList,
-                modifier = modifier,
+                modifier = modifier
+                    .testTag(MAIN_SCREEN_SUCCESS_TAG),
             )
         }
         is UiState.Error -> {

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.github.goutarouh.data.remote"
+    namespace = "com.github.goutarouh.test"
     compileSdk = 34
 
     defaultConfig {
@@ -36,25 +36,16 @@ android {
 
 dependencies {
 
+    implementation(project(":data:remote"))
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.android.material:material:1.11.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("com.google.dagger:hilt-android:2.44")
+    implementation("com.google.dagger:hilt-android-testing:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
-    testImplementation("com.google.dagger:hilt-android-testing:2.44")
-    kaptTest("com.google.dagger:hilt-android-compiler:2.44")
-
-    api("com.squareup.retrofit2:retrofit:2.9.0")
-    api("com.squareup.retrofit2:converter-gson:2.9.0")
-    testApi("com.squareup.okhttp3:mockwebserver:4.11.0")
-    testApi("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0-RC")
-
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.11.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0-RC")
 }
