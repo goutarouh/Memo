@@ -2,8 +2,6 @@ name: TempStoreScreenshot
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   store-screenshot-test:
@@ -13,7 +11,7 @@ jobs:
     steps:
 
       - name: Create Hello
-        run: echo Hello World > hello.txt
+        run: echo Hello World from $GITHUB_REF > hello.txt
 
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
