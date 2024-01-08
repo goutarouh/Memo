@@ -21,7 +21,7 @@ jobs:
         run: |
           pwd
           ls ../
-          ls ../
+          ls ../..
           ls -la
           ls -la f1
           ls -la f2
