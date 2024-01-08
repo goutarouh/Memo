@@ -1,0 +1,25 @@
+name: TempStoreScreenshot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  store-screenshot-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+  steps:
+
+    - name: Create File
+      run: |
+        echo "Hello World" > hello.txt
+
+    - uses: actions/upload-artifact@v3
+      if: ${{ always() }}
+      with:
+        name: test-upload_artifact
+        path: |
+          hello.txt
+        retention-days: 30
