@@ -13,7 +13,11 @@ jobs:
     steps:
 
       - name: Create Hello
-        run: echo Hello World > hello.txt
+        run: |
+          mkdir -p f1
+          mkdir -p f2
+          echo Hello World1 > f1/hello.txt
+          echo Hello World2 > f2/hello.txt
 
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}

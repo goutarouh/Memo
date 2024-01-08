@@ -22,3 +22,11 @@ jobs:
           name: test-upload_artifact
           workflow: TempStoreScreenshot.yml
           branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.ref || github.event.repository.default_branch }}
+
+      - name: Show
+        run: |
+          ls -la
+          ls -la f1
+          ls -la f2
+          cat f1/hello.txt
+          cat f2/hello.txt
