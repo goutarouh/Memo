@@ -1,5 +1,6 @@
 package com.github.goutarouh.memo.feature.list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -54,6 +56,7 @@ private fun MemoListScreen(
             MemoList(
                 memoList = uiState.data.memoList,
                 modifier = modifier
+                    .background(Color.LightGray)
                     .testTag(MAIN_SCREEN_SUCCESS_TAG),
             )
         }
