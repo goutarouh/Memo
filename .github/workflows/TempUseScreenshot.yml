@@ -19,6 +19,7 @@ jobs:
 
       - name: Show
         run: |
+          pwd
           ls -la
           ls -la f1
           ls -la f2
