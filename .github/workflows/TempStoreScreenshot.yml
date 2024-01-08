@@ -12,8 +12,8 @@ jobs:
 
   steps:
 
-    - name: Create Hello.txt
-      run: echo "Hello World" > hello.txt
+    - name: Create Hello
+      run: echo Hello World > hello.txt
 
     - uses: actions/upload-artifact@v3
       if: ${{ always() }}
