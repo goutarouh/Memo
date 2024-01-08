@@ -20,6 +20,8 @@ jobs:
       - name: Show
         run: |
           pwd
+          ls ../
+          ls ../
           ls -la
           ls -la f1
           ls -la f2
