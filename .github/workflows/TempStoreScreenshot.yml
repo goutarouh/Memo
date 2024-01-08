@@ -16,8 +16,8 @@ jobs:
         run: |
           mkdir -p f1/build
           mkdir -p f2/build
-          echo Hello World1 > f1/hello.txt
-          echo Hello World2 > f2/hello.txt
+          echo Hello World1 > f1/build/hello.txt
+          echo Hello World2 > f2/build/hello.txt
 
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
