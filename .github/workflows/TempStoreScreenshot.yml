@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
-  steps:
+    steps:
 
-    - name: Create Hello
-      run: echo Hello World > hello.txt
+      - name: Create Hello
+        run: echo Hello World > hello.txt
 
-    - uses: actions/upload-artifact@v3
-      if: ${{ always() }}
-      with:
-        name: test-upload_artifact
-        path: |
-          hello.txt
-        retention-days: 30
+      - uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: test-upload_artifact
+          path: |
+            hello.txt
+          retention-days: 30
