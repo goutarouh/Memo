@@ -1,4 +1,4 @@
-name: CompareScreenshot
+name: TempCompareScreenshot
 
 on:
   workflow_dispatch:
